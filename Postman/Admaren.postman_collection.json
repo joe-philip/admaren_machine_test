@@ -164,6 +164,7 @@
 							"if (pm.response.status == \"OK\"){",
 							"    var data = pm.response.json()",
 							"    pm.environment.set('authToken',data.data.access)",
+							"    pm.environment.set('refreshToken',data.data.refresh)",
 							"}"
 						],
 						"type": "text/javascript"
@@ -186,6 +187,29 @@
 					"raw": "/login",
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refresh\": \"{{refreshToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/token_refresh",
+					"path": [
+						"token_refresh"
 					]
 				}
 			},
