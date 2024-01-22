@@ -142,7 +142,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_RENDERER_CLASSES': [
         'root.utils.renderers.CustomJsonRenderer'
-    ]
+    ],
+
+    # Custom exception handling
+    # https://www.django-rest-framework.org/api-guide/exceptions/#custom-exception-handling
+
+    'EXCEPTION_HANDLER': 'root.utils.exceptions.exception_handler'
 }
 
 # Simple JWT
@@ -159,5 +164,5 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
-    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser'
 }
