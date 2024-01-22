@@ -30,11 +30,18 @@ class TextSnippetsSerializer(serializers.ModelSerializer):
     tags = serializers.ListField(
         child=serializers.CharField(), write_only=True
     )
+    detail_view = serializers.SerializerMethodField()
 
     def validate_tags(self, value: list[str]) -> list[Tags]:
         if value:
             return list(map(lambda x: Tags.objects.get_or_create(title=x.lower())[0], value))
         raise serializers.ValidationError('Atleast one tag required')
+
+    def get_detail_view(self, instance: TextSnippets) -> str:
+        from rest_framework.request import Request
+
+        request: Request = self.context.get('request')
+        return f'{request.scheme}://{request.get_host()}/text_snippets/{instance.id}'
 
     class Meta:
         model = TextSnippets
