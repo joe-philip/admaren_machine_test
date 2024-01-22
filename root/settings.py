@@ -154,8 +154,32 @@ REST_FRAMEWORK = {
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(hours=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(
+        **dict(
+            seconds=env.int(
+                'ACCESS_TOKEN_LIFETIME_SECONDS', default=0
+            ),
+            minutes=env.int(
+                'ACCESS_TOKEN_LIFETIME_MINUTES', default=0
+            ),
+            hours=env.int(
+                'ACCESS_TOKEN_LIFETIME_HOURS', default=0
+            )
+        )
+    ),
+    'REFRESH_TOKEN_LIFETIME': timedelta(
+        **dict(
+            seconds=env.int(
+                'REFRESH_TOKEN_LIFETIME_SECONDS', default=0
+            ),
+            minutes=env.int(
+                'REFRESH_TOKEN_LIFETIME_MINUTES', default=0
+            ),
+            hours=env.int(
+                'REFRESH_TOKEN_LIFETIME_HOURS', default=0
+            )
+        )
+    ),
     'UPDATE_LAST_LOGIN': True,
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': 'Bearer',
