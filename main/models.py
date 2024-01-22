@@ -1,5 +1,7 @@
 from django.db import models
 
+from root.utils.utils import slug_generate
+
 # Create your models here.
 
 
@@ -26,3 +28,8 @@ class TextSnippets(models.Model):
         verbose_name = 'Text snippet'
 
     def __str__(self) -> str: return self.title
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.slug:
+            self.slug = slug_generate()
+        return super().save(*args, **kwargs)
