@@ -4,6 +4,7 @@ Django==5.0.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 pep8==1.7.1
+psycopg2-binary==2.9.9
 pycodestyle==2.11.1
 PyJWT==2.8.0
 pytz==2023.3.post1
