@@ -1,12 +1,12 @@
 from django.db.models import QuerySet
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Tags, TextSnippets
-from .serializers import (TagListSerializer,
+from .serializers import (TagDetailSerializer, TagListSerializer,
                           TextSnippetsSerializer, UserSignupSerializer)
 
 # Create your views here.
@@ -35,3 +35,8 @@ class TextSnippetsAPI(ModelViewSet):
 class TagListAPI(ListAPIView):
     queryset = Tags.objects.all()
     serializer_class = TagListSerializer
+
+
+class TagRetrieveAPI(RetrieveAPIView):
+    queryset = Tags.objects.all()
+    serializer_class = TagDetailSerializer
