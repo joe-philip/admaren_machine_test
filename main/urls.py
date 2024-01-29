@@ -16,5 +16,6 @@ urlpatterns = [
     path('signup', views.SignupAPI.as_view()),
     path('login', TokenObtainPairView.as_view(), name='login'),
     path('token_refresh', TokenRefreshView.as_view()),
-    path('tags', views.TagListAPI.as_view())
+    path('tags', views.TagListAPI.as_view()),
+    path('tag_detail/<int:pk>', views.TagRetrieveAPI.as_view()),
 ]+router.urls
