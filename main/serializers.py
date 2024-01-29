@@ -58,3 +58,9 @@ class TextSnippetsSerializer(serializers.ModelSerializer):
             instance.tags.all().values_list('title', flat=True)
         )
         return data
+
+
+class TagListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tags
+        fields = '__all__'
