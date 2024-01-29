@@ -86,6 +86,7 @@ class TagDetailSerializer(serializers.ModelSerializer):
 class TextSnippetsDeleteSerializer(serializers.Serializer):
     snippets = serializers.ListField(
         child=serializers.PrimaryKeyRelatedField(
-            queryset=TextSnippets.objects.all()
+            queryset=TextSnippets.objects.all(),
+            error_messages={'does_not_exist': 'Snippet not found'}
         )
     )
