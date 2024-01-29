@@ -18,4 +18,5 @@ urlpatterns = [
     path('token_refresh', TokenRefreshView.as_view()),
     path('tags', views.TagListAPI.as_view()),
     path('tag_detail/<int:pk>', views.TagRetrieveAPI.as_view()),
+    path('text_snippets_delete', views.TextSnippetsDeleteAPI.as_view())
 ]+router.urls
