@@ -31,6 +31,11 @@ class TextSnippetsAPI(ModelViewSet):
         }
         return Response(data)
 
+    def destroy(self, request: Request, *args, **kwargs) -> Response:
+        self.perform_destroy(self.get_object())
+        queryset = self.get_queryset()
+        return Response(self.serializer_class(queryset, context=self.get_serializer_context(), many=True).data)
+
 
 class TagListAPI(ListAPIView):
     queryset = Tags.objects.all()
