@@ -81,3 +81,11 @@ class TagDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tags
         fields = '__all__'
+
+
+class TextSnippetsDeleteSerializer(serializers.Serializer):
+    snippets = serializers.ListField(
+        child=serializers.PrimaryKeyRelatedField(
+            queryset=TextSnippets.objects.all()
+        )
+    )
