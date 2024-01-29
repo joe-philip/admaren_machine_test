@@ -3,11 +3,10 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import TextSnippets
-from .serializers import (OverviewSerializer, TextSnippetsSerializer,
+from .serializers import (TextSnippetsSerializer,
                           UserSignupSerializer)
 
 # Create your views here.
