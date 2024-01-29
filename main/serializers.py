@@ -64,3 +64,20 @@ class TagListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tags
         fields = '__all__'
+
+
+class TagDetailSerializer(serializers.ModelSerializer):
+    class TextSnipppetsSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = TextSnippets
+            exclude = ('tags',)
+
+    snipppets = serializers.SerializerMethodField()
+
+    def get_snipppets(self, instance: Tags) -> OrderedDict:
+        snippets = TextSnippets.objects.filter(tags=instance)
+        return self.TextSnipppetsSerializer(snippets, many=True).data
+
+    class Meta:
+        model = Tags
+        fields = '__all__'
